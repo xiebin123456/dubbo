@@ -629,6 +629,7 @@ public class ExtensionLoader<T> {
         if (clazz == null) {
             throw findException(name);
         }
+
         try {
             T instance = (T) EXTENSION_INSTANCES.get(clazz);
             if (instance == null) {
@@ -637,7 +638,8 @@ public class ExtensionLoader<T> {
             }
             injectExtension(instance);
             Set<Class<?>> wrapperClasses = cachedWrapperClasses;
-            if (CollectionUtils.isNotEmpty(wrapperClasses)) {
+            if (CollectionUtils.isNotEmpty(wrapperClasses))
+            {
                 for (Class<?> wrapperClass : wrapperClasses) {
                     instance = injectExtension((T) wrapperClass.getConstructor(type).newInstance(instance));
                 }
